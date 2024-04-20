@@ -1,13 +1,14 @@
 import { Schema, model, models } from 'mongoose';
 
 export interface IImage extends Document {
+  _id?: string;
   title: string;
   transformationType: string;
   publicId: string;
-  secureUrl: URL;
+  secureURL: string;
   width?: number;
   height?: number;
-  transformationUrl?: URL;
+  transformationURL?: string;
   aspectRatio?: string;
   color?: string;
   prompt?: string;
@@ -18,16 +19,18 @@ export interface IImage extends Document {
   }; // Assuming this is the user ID
   createdAt?: Date;
   updatedAt?: Date;
+  config?: object;
 }
 
 const ImageSchema = new Schema({
   title: { type: String, required: true },
   transformationType: { type: String, required: true },
   publicId: { type: String, required: true },
-  secureUrl: { type: URL, required: true },
+  secureURL: { type: String, required: true },
   width: { type: Number },
   height: { type: Number },
-  transformationUrl: { type: URL },
+  config: { type: Object },
+  transformationURL: { type: String },
   aspectRatio: { type: String },
   color: { type: String },
   prompt: { type: String },
